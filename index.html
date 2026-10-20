@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f9fc">
+  <meta name="description" content="Một bó hoa và tấm thiệp nhỏ, gửi ngàn lời chúc dịu dàng nhân ngày Phụ nữ Việt Nam 20/10.">
+    <title>Một bó hoa cẩm tú cầu dành tặng bạn · 20/10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="preload" href="./assets/fonts/noto-serif-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/noto-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/noto-sans-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./lock.css">
+  <script src="./config.js"></script>
+  <script src="./script.js" defer></script>
+  <script src="./card.js" defer></script>
+  <script src="./lock.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="garden-link" href="./garden.html">Ngắm vườn hoa <span aria-hidden="true">❀</span></a>
+    <canvas id="ambientPetalsCanvas" aria-hidden="true"></canvas>
+    <header class="greeting">
+      <p class="occasion">Ngày Phụ nữ Việt Nam <span>20/10</span></p>
+      <h1>Một bó hoa nhỏ,<br>gửi ngàn yêu thương.</h1>
+      <p class="greeting-caption">Mong hôm nay của bạn thật dịu dàng.</p>
+    </header>
+
+    <div class="gift-layout">
+      <section class="scene-column" aria-label="Hoa và những lời chúc 20/10">
+
+
+        <div class="gift-visuals">
+          <div class="bouquet-composition">
+            <div id="bouquetStageWrapper" role="button" tabindex="0"
+              aria-label="Bó hoa cẩm tú cầu. Nhấn Enter để nhận lời chúc; dùng phím mũi tên để chọn bông hoa."
+              aria-describedby="bouquetHint">
+              <canvas id="bouquetCanvas" aria-hidden="true"></canvas>
+            </div>
+            <button class="envelope-button" id="openCard" type="button" aria-haspopup="dialog" aria-controls="greetingCard" aria-expanded="false" hidden>
+              <span class="envelope" aria-hidden="true"><span class="envelope-letter">Gửi bạn</span><span class="envelope-seal">♡</span></span>
+              <span class="envelope-caption">Có một tấm thiệp cho bạn</span>
+              <span class="envelope-action">Mở thiệp</span>
+            </button>
+          </div>
+
+        </div>
+
+        <footer class="scene-footer">
+          <p id="bouquetHint" class="bouquet-hint">Chạm một bông hoa để nhận lời chúc</p>
+          <p id="roseWish" class="rose-wish" role="status" aria-live="polite" aria-atomic="true"></p>
+          <button class="text-button" id="replayBloom" type="button">Cho hoa nở lại <span aria-hidden="true">↻</span></button>
+        </footer>
+      </section>
+
+      <dialog id="greetingCard" class="card-dialog" aria-labelledby="cardTitle">
+        <div class="letter-paper">
+          <button class="close-button" id="closeCard" type="button" aria-label="Đóng thiệp">×</button>
+          <div id="cardReading">
+            <div class="letter-date" aria-label="Ngày 20 tháng 10"><span>20</span><span class="date-stem" aria-hidden="true"></span><span>10</span></div>
+            <p class="letter-recipient"><span id="cardRecipient"></span>,</p>
+            <h2 id="cardTitle">Chúc em một ngày<br>thật nhiều yêu thương.</h2>
+            <div class="letter-flower" aria-hidden="true">❀</div>
+            <p id="cardMessage" class="letter-message"></p>
+            <div class="letter-signoff"><p>Với thật nhiều thương mến,</p><p id="cardSender" class="letter-signature"></p></div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+    <noscript><p class="noscript-message">Bật JavaScript để ngắm hoa nở và mở thiệp 20/10 nhé.</p></noscript>
+  </main>
+</body>
+</html>

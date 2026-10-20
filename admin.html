@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển Quà Tặng 20/10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="./config.js"></script>
+  <style>
+    :root {
+      --bg: #f3f7fb;
+      --card-bg: #ffffff;
+      --primary: #4a7c96;
+      --primary-hover: #3b667e;
+      --primary-soft: #eaf3f8;
+      --rose: #d46b89;
+      --rose-soft: #fdf0f4;
+      --ink: #2c3e50;
+      --muted: #627d98;
+      --border: #dbe4ee;
+      --success: #2e7d32;
+      --shadow: 0 10px 25px -5px rgba(50, 80, 110, 0.08), 0 8px 10px -6px rgba(50, 80, 110, 0.04);
+      --font-serif: "Noto Serif", Georgia, serif;
+      --font-display: "Playfair Display", Georgia, serif;
+      --font-sans: "Noto Sans", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: linear-gradient(135deg, #eef5f9 0%, #fbf4f6 50%, #f0f7f5 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ================= LOGIN OVERLAY ================= */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px rgba(44, 62, 80, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      position: relative;
+      animation: fadeIn .4s ease-out;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .login-icon {
+      font-size: 38px;
+      color: var(--rose);
+      display: inline-block;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 10px rgba(212, 107, 137, 0.25));
+    }
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .login-subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .login-form .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: #fafcff;
+      transition: all .2s ease;
+    }
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(74, 124, 150, 0.12);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(74, 124, 150, 0.25);
+      transition: all .2s ease;
+      margin-top: 8px;
+    }
+    .login-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(74, 124, 150, 0.35);
+    }
+    .login-hint {
+      margin-top: 20px;
+      padding: 12px;
+      background: var(--primary-soft);
+      border-radius: 10px;
+      font-size: 12.5px;
+      color: var(--primary-hover);
+      line-height: 1.5;
+      text-align: center;
+    }
+    .login-hint code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .login-error {
+      background: var(--rose-soft);
+      color: #b73d63;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      display: none;
+      text-align: center;
+      animation: shake .3s ease;
+    }
+
+    /* ================= MAIN DASHBOARD ================= */
+    .dashboard {
+      display: none;
+      flex: 1;
+      padding: 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title .flower {
+      color: var(--rose);
+      font-size: 24px;
+    }
+    .brand-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      padding: 9px 16px;
+      border-radius: 9px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px solid transparent;
+      transition: all .2s ease;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+    .btn-rose {
+      background: var(--rose);
+      color: #fff;
+    }
+    .btn-rose:hover {
+      background: #c35575;
+    }
+    .btn-outline {
+      border-color: var(--border);
+      background: #fff;
+      color: var(--ink);
+    }
+    .btn-outline:hover {
+      background: #f7fafc;
+      border-color: var(--muted);
+    }
+    .btn-danger {
+      border-color: #ffd6df;
+      background: #fff;
+      color: #c35575;
+    }
+    .btn-danger:hover {
+      background: var(--rose-soft);
+    }
+
+    /* SHARE CARD (HIGHLIGHTED) */
+    .share-banner {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      border: 1.5px solid #bddcf0;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 15px rgba(74, 124, 150, 0.08);
+    }
+    .share-banner-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .share-banner-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #1e4968;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .share-banner-desc {
+      font-size: 13px;
+      color: #3b5f7b;
+      line-height: 1.5;
+    }
+    .share-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .share-input-row input {
+      flex: 1;
+      font-family: monospace;
+      font-size: 13px;
+      background: #fff;
+      border: 1px solid #bddcf0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #1e4968;
+    }
+
+    /* GRID LAYOUT (EDITOR + PREVIEW) */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .editor-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .panel {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .panel-icon {
+      font-size: 20px;
+      color: var(--primary);
+    }
+    .panel-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .panel-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: 20px;
+      font-weight: 600;
+      margin-left: auto;
+    }
+    .field-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* PREVIEW CONTAINER */
+    .preview-sticky {
+      position: sticky;
+      top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .preview-card {
+      background: #fffdfc;
+      border: 1px solid #e7d8dc;
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 30px rgba(118, 54, 77, 0.08);
+      position: relative;
+    }
+    .preview-card::before {
+      content: "";
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid #f2e7eb;
+      pointer-events: none;
+      border-radius: 8px;
+    }
+    .preview-date {
+      font-family: var(--font-serif);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .preview-recipient {
+      font-family: var(--font-serif);
+      font-size: 14.5px;
+      color: #76364d;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .preview-title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      line-height: 1.35;
+      color: #4a2835;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .preview-flower {
+      text-align: center;
+      color: var(--rose);
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .preview-message {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #553c45;
+      white-space: pre-line;
+      margin-bottom: 18px;
+    }
+    .preview-sender {
+      text-align: right;
+      font-family: var(--font-serif);
+      font-size: 13px;
+      color: #76364d;
+      font-style: italic;
+    }
+
+    /* MINI PREVIEW FOR LOCK SCREEN */
+    .preview-lock-mini {
+      background: linear-gradient(135deg, #1b263b 0%, #293241 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    .preview-lock-mini h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #ffd1dc;
+    }
+    .preview-lock-mini p {
+      font-size: 12px;
+      color: #b0c4de;
+      margin-bottom: 10px;
+    }
+    .preview-lock-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #98e2c6;
+    }
+
+    /* FOOTER SAVE BAR */
+    .bottom-save-bar {
+      position: sticky;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.04);
+      margin-top: 32px;
+      border-radius: 12px 12px 0 0;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      background: #2e7d32;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none !important;
+      transition: all .25s cubic-bezier(.2,.8,.2,1);
+      z-index: 9999;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 1. FORM ĐĂNG NHẬP ADMIN ================= -->
+  <div id="loginScreen" class="login-container">
+    <div class="login-box">
+      <div class="login-header">
+        <span class="login-icon">❀</span>
+        <h1 class="login-title">Cấu Hình Quà Tặng 20/10</h1>
+        <p class="login-subtitle">Đăng nhập để tùy chỉnh tên người nhận, lời chúc, mật khẩu ngày sinh và link gửi.</p>
+      </div>
+
+      <div id="loginError" class="login-error">Tài khoản hoặc mật khẩu không chính xác!</div>
+
+      <form id="loginForm" class="login-form" autocomplete="off">
+        <div class="form-group">
+          <label class="form-label" for="usernameInput">Tài khoản</label>
+          <input type="text" id="usernameInput" class="form-input" placeholder="admin" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="passwordInput">Mật khẩu</label>
+          <input type="password" id="passwordInput" class="form-input" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="login-btn">Đăng nhập vào hệ thống</button>
+      </form>
+
+      <div class="login-hint">
+        💡 <strong>Tài khoản mặc định:</strong> <code>admin</code><br>
+        🔑 <strong>Mật khẩu mặc định:</strong> <code>admin2010</code>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= 2. BẢNG ĐIỀU KHIỂN SAU KHI ĐĂNG NHẬP ================= -->
+  <div id="dashboardScreen" class="dashboard">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div>
+        <h1 class="brand-title"><span class="flower">❀</span> Quản Trị Quà Tặng 20/10</h1>
+        <p class="brand-desc">Thay đổi nội dung dễ dàng không cần biết lập trình</p>
+      </div>
+      <div class="top-actions">
+        <a href="./index.html" target="_blank" class="btn btn-outline" id="btnPreviewIndex">
+          <span>👁️</span> Xem trang quà tặng
+        </a>
+        <a href="./garden.html" target="_blank" class="btn btn-outline" id="btnPreviewGarden">
+          <span>🌸</span> Xem vườn hoa
+        </a>
+        <button type="button" class="btn btn-danger" id="btnLogout">
+          <span>🚪</span> Đăng xuất
+        </button>
+      </div>
+    </header>
+
+    <!-- Shareable Link Callout Banner -->
+    <section class="share-banner">
+      <div class="share-banner-head">
+        <div class="share-banner-title">
+          <span>🔗</span> Link Quà Tặng Tự Động Đồng Bộ (Gửi Cho Người Ấy)
+        </div>
+        <button type="button" class="btn btn-primary" id="btnCopyShareUrl">
+          <span>📋</span> Sao chép Link gửi người ấy
+        </button>
+      </div>
+      <p class="share-banner-desc">
+        Khi bạn cấu hình xong và bấm "Lưu", hãy sao chép link bên dưới gửi cho người ấy. Toàn bộ tên, thư chúc mừng và mật khẩu ngày sinh sẽ tự động được tải trọn vẹn trên điện thoại/máy tính của người ấy!
+      </p>
+      <div class="share-input-row">
+        <input type="text" id="shareUrlInput" readonly onclick="this.select();">
+      </div>
+    </section>
+
+    <!-- Content Grid: Editor (Left) & Live Preview (Right) -->
+    <div class="content-grid">
+      
+      <!-- Editor Column -->
+      <main class="editor-section">
+        
+        <!-- Panel 1: Thư chúc mừng (index.html) -->
+        <section class="panel">
+          <div class="panel-header">
+            <span class="panel-icon">💌</span>
+            <h2 class="panel-title">1. Người Nhận & Nội Dung Thư (Trang Chính)</h2>
+            <span class="panel-badge">Trang Index</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="cfgRecipient">Tên người nhận (Hiển thị đầu thiệp)</label>
+            <input type="text" id="cfgRecipient" class="form-input" placeholder="Ví dụ: Bạn, Em, Người thương...">
+            <p class="field-hint">Tên này sẽ xuất hiện ở dòng mở đầu của bức thư.</p>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="cfgLetterTitle">Tiêu đề lá thư</label>
+            <textarea id="cfgLetterTitle" class="form-textarea" style="min-height: 60px;" placeholder="Chúc bạn một ngày&#10;thật nhiều yêu thương."></textarea>
+            <p class="field-hint">Có thể gõ Enter để ngắt dòng đẹp mắt.</p>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="cfgLetterMessage">Nội dung tâm thư</label>
+            <textarea id="cfgLetterMessage" class="form-textarea" style="min-height: 140px;" placeholder="Nhập lời chúc và những tâm sự bạn muốn gửi gắm..."></textarea>
+            <p class="field-hint">💡 Mẹo: Nhấn Enter 2 lần để tách các đoạn văn rõ ràng, thanh thoát.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cfgSender">Tên người gửi / Ký tên</label>
+            <input type="text" id="cfgSender" class="form-input" placeholder="Ví dụ: Người gửi, Fan hâm mộ...">
+            <p class="field-hint">Xuất hiện ở phần ký tên cuối bức thư.</p>
+          </div>
+        </section>
+
+        <!-- Panel 2: Mật khẩu ngày sinh (lock.js) -->
+        <section class="panel">
+          <div class="panel-header">
+            <span class="panel-icon">🔒</span>
+            <h2 class="panel-title">2. Mật Khẩu Mở Khóa Ngày Sinh</h2>
+            <span class="panel-badge">Màn hình khóa</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="cfgBirthday">Ngày tháng năm sinh mở khóa (dd/mm/yyyy)</label>
+            <input type="text" id="cfgBirthday" class="form-input" placeholder="20/10/2004" maxlength="10">
+            <p class="field-hint">Người nhận chỉ cần nhập ngày sinh này để mở khóa món quà. Hệ thống hỗ trợ cả gõ liền số (ví dụ: 20102004) hoặc gõ có dấu gạch.</p>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="cfgLockTitle">Tiêu đề màn hình khóa</label>
+            <input type="text" id="cfgLockTitle" class="form-input" placeholder="Món quà dành riêng cho bạn ♡">
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label" for="cfgLockInstruction">Lời nhắn hướng dẫn</label>
+              <input type="text" id="cfgLockInstruction" class="form-input" placeholder="Nhập ngày tháng năm sinh để mở khóa món quà nhé!">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cfgLockHint">Gợi ý dưới ô nhập</label>
+              <input type="text" id="cfgLockHint" class="form-input" placeholder="Gợi ý: Ngày sinh đầy đủ (dd/mm/yyyy - ví dụ: 20/10/2004)">
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 3: Vườn hoa (garden.html) -->
+        <section class="panel">
+          <div class="panel-header">
+            <span class="panel-icon">🌸</span>
+            <h2 class="panel-title">3. Tùy Chỉnh Trang Vườn Hoa</h2>
+            <span class="panel-badge">Trang Garden</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="cfgDedication">Dòng đề từ ở góc vườn hoa</label>
+            <input type="text" id="cfgDedication" class="form-input" placeholder="Dành tặng bạn cả một vườn thương.">
+            <p class="field-hint">Dòng chữ nhỏ tinh tế ở góc trên bên trái màn hình vườn hoa.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cfgGardenCardTitle">Tiêu đề thiệp trong vườn hoa</label>
+            <input type="text" id="cfgGardenCardTitle" class="form-input" placeholder="Tặng bạn một vườn hoa">
+            <p class="field-hint">Xuất hiện trong thiệp mở ra khi toàn bộ vườn hoa bung nở.</p>
+          </div>
+        </section>
+
+        <!-- Panel 4: Đổi tài khoản Admin -->
+        <section class="panel">
+          <div class="panel-header">
+            <span class="panel-icon">⚙️</span>
+            <h2 class="panel-title">4. Đổi Tài Khoản & Mật Khẩu Admin</h2>
+            <span class="panel-badge">Bảo mật</span>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label" for="adminNewUser">Tên đăng nhập mới</label>
+              <input type="text" id="adminNewUser" class="form-input" placeholder="admin">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adminNewPass">Mật khẩu mới</label>
+              <input type="password" id="adminNewPass" class="form-input" placeholder="••••••••">
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline" id="btnUpdateAdminAuth" style="margin-top: 14px;">
+            <span>🛡️</span> Cập nhật tài khoản quản trị
+          </button>
+        </section>
+
+      </main>
+
+      <!-- Live Preview Column -->
+      <aside class="preview-sticky">
+        <h3 style="font-size: 15px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">
+          👁️ Xem Trước Trực Quan
+        </h3>
+
+        <!-- Mockup thiệp -->
+        <div class="preview-card">
+          <div class="preview-date">20 · 10</div>
+          <div class="preview-recipient" id="pvRecipient">Mến gửi bạn,</div>
+          <div class="preview-title" id="pvTitle">Chúc bạn một ngày<br>thật nhiều yêu thương.</div>
+          <div class="preview-flower">❀</div>
+          <div class="preview-message" id="pvMessage">Nhân ngày Phụ nữ Việt Nam 20/10, gửi đến bạn một bó hoa cẩm tú cầu ngập tràn sắc màu cùng ngàn lời thương mến...</div>
+          <div class="preview-sender" id="pvSender">— Người gửi</div>
+        </div>
+
+        <!-- Mockup khóa -->
+        <div class="preview-lock-mini">
+          <h4 id="pvLockTitle">Món quà dành riêng cho bạn ♡</h4>
+          <p id="pvLockInstruction">Nhập ngày tháng năm sinh để mở khóa món quà nhé!</p>
+          <div>
+            <span style="font-size: 11px; opacity: .8; display: block; margin-bottom: 4px;">Mật khẩu mở quà:</span>
+            <span class="preview-lock-badge" id="pvBirthday">20/10/2004</span>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Bottom Save Bar -->
+    <div class="bottom-save-bar">
+      <div>
+        <button type="button" class="btn btn-outline" id="btnResetDefault">
+          <span>🔄</span> Khôi phục mặc định
+        </button>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn btn-rose" id="btnSaveConfig">
+          <span>💾</span> Lưu cấu hình
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMsg">Đã lưu thay đổi thành công!</span>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const AUTH_SESSION_KEY = 'gift_admin_logged_in';
+
+      // DOM Elements
+      const loginScreen = document.getElementById('loginScreen');
+      const dashboardScreen = document.getElementById('dashboardScreen');
+      const loginForm = document.getElementById('loginForm');
+      const usernameInput = document.getElementById('usernameInput');
+      const passwordInput = document.getElementById('passwordInput');
+      const loginError = document.getElementById('loginError');
+      const btnLogout = document.getElementById('btnLogout');
+
+      // Config form inputs
+      const cfgRecipient = document.getElementById('cfgRecipient');
+      const cfgLetterTitle = document.getElementById('cfgLetterTitle');
+      const cfgLetterMessage = document.getElementById('cfgLetterMessage');
+      const cfgSender = document.getElementById('cfgSender');
+      const cfgBirthday = document.getElementById('cfgBirthday');
+      const cfgLockTitle = document.getElementById('cfgLockTitle');
+      const cfgLockInstruction = document.getElementById('cfgLockInstruction');
+      const cfgLockHint = document.getElementById('cfgLockHint');
+      const cfgDedication = document.getElementById('cfgDedication');
+      const cfgGardenCardTitle = document.getElementById('cfgGardenCardTitle');
+
+      // Admin auth inputs
+      const adminNewUser = document.getElementById('adminNewUser');
+      const adminNewPass = document.getElementById('adminNewPass');
+      const btnUpdateAdminAuth = document.getElementById('btnUpdateAdminAuth');
+
+      // Actions
+      const btnSaveConfig = document.getElementById('btnSaveConfig');
+      const btnResetDefault = document.getElementById('btnResetDefault');
+      const btnCopyShareUrl = document.getElementById('btnCopyShareUrl');
+      const shareUrlInput = document.getElementById('shareUrlInput');
+
+      // Live preview elements
+      const pvRecipient = document.getElementById('pvRecipient');
+      const pvTitle = document.getElementById('pvTitle');
+      const pvMessage = document.getElementById('pvMessage');
+      const pvSender = document.getElementById('pvSender');
+      const pvLockTitle = document.getElementById('pvLockTitle');
+      const pvLockInstruction = document.getElementById('pvLockInstruction');
+      const pvBirthday = document.getElementById('pvBirthday');
+
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      let toastTimer = null;
+
+      let lastToastTime = 0;
+      function showToast(message, isError = false) {
+        const now = Date.now();
+        if (now - lastToastTime < 350) return;
+        lastToastTime = now;
+
+        clearTimeout(toastTimer);
+        const iconEl = document.getElementById('toastIcon');
+        if (iconEl) iconEl.textContent = isError ? '⚠️' : '✓';
+        const cleanMsg = String(message).replace(/^[✓✔⚠️\s]+/, '');
+        toastMsg.textContent = cleanMsg;
+        toast.style.background = isError ? '#d32f2f' : '#2e7d32';
+        toast.classList.remove('show');
+        void toast.offsetWidth;
+        toast.classList.add('show');
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+      }
+
+      // Check login state
+      function checkAuth() {
+        if (sessionStorage.getItem(AUTH_SESSION_KEY) === 'true') {
+          showDashboard();
+        } else {
+          showLogin();
+        }
+      }
+
+      function showLogin() {
+        loginScreen.style.display = 'flex';
+        dashboardScreen.style.display = 'none';
+        usernameInput.focus();
+      }
+
+      function showDashboard() {
+        loginScreen.style.display = 'none';
+        dashboardScreen.style.display = 'block';
+        loadConfigIntoForm();
+        updateShareUrl();
+        // Allow instant previewing garden by setting session unlock
+        sessionStorage.setItem('gift_unlocked', 'true');
+      }
+
+      // Handle Login Form Submit
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = usernameInput.value.trim();
+        const pass = passwordInput.value;
+        const currentAuth = window.GiftConfig.getAdminAuth();
+
+        if (user === currentAuth.username && pass === currentAuth.password) {
+          sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+          loginError.style.display = 'none';
+          showDashboard();
+          showToast('Chào mừng bạn đến với Bảng điều khiển quà tặng!');
+        } else {
+          loginError.style.display = 'block';
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      });
+
+      // Handle Logout
+      btnLogout.addEventListener('click', () => {
+        sessionStorage.removeItem(AUTH_SESSION_KEY);
+        showLogin();
+      });
+
+      // Load config into form
+      function loadConfigIntoForm() {
+        const cfg = window.GiftConfig.get();
+        cfgRecipient.value = cfg.recipient || '';
+        cfgLetterTitle.value = cfg.letterTitle || '';
+        cfgLetterMessage.value = cfg.letterMessage || '';
+        cfgSender.value = cfg.sender || '';
+
+        cfgBirthday.value = cfg.birthday || '';
+        cfgLockTitle.value = cfg.lockTitle || '';
+        cfgLockInstruction.value = cfg.lockInstruction || '';
+        cfgLockHint.value = cfg.lockHint || '';
+
+        cfgDedication.value = cfg.dedication || '';
+        cfgGardenCardTitle.value = cfg.gardenCardTitle || '';
+
+        const currentAuth = window.GiftConfig.getAdminAuth();
+        adminNewUser.value = currentAuth.username;
+        adminNewPass.value = '';
+
+        updateLivePreview();
+      }
+
+      // Collect form data into object
+      function getFormData() {
+        return {
+          recipient: cfgRecipient.value.trim(),
+          letterTitle: cfgLetterTitle.value.trim(),
+          letterMessage: cfgLetterMessage.value,
+          sender: cfgSender.value.trim(),
+          birthday: cfgBirthday.value.trim(),
+          lockTitle: cfgLockTitle.value.trim(),
+          lockInstruction: cfgLockInstruction.value.trim(),
+          lockHint: cfgLockHint.value.trim(),
+          dedication: cfgDedication.value.trim(),
+          gardenCardTitle: cfgGardenCardTitle.value.trim()
+        };
+      }
+
+      // Update Live Preview
+      function updateLivePreview() {
+        const data = getFormData();
+        pvRecipient.textContent = (data.recipient ? (data.recipient.startsWith('Gửi') || data.recipient.startsWith('Mến gửi') ? data.recipient : `Mến gửi ${data.recipient}`) : 'Mến gửi bạn') + ',';
+        pvTitle.innerHTML = (data.letterTitle || 'Chúc bạn một ngày\nthật nhiều yêu thương.').replace(/\n/g, '<br>');
+        pvMessage.textContent = data.letterMessage || 'Nội dung bức thư sẽ hiển thị ở đây...';
+        pvSender.textContent = data.sender ? `— ${data.sender}` : '';
+
+        pvLockTitle.textContent = data.lockTitle || 'Món quà dành riêng cho cậu ♡';
+        pvLockInstruction.textContent = data.lockInstruction || 'Nhập ngày tháng năm sinh của cậu để mở khóa món quà nhé!';
+        pvBirthday.textContent = data.birthday || 'dd/mm/yyyy';
+
+        updateShareUrl();
+      }
+
+      // Auto update share link
+      function updateShareUrl() {
+        const data = getFormData();
+        const url = window.GiftConfig.createShareUrl(data);
+        shareUrlInput.value = url;
+      }
+
+      // Listen for typing events to update live preview
+      [
+        cfgRecipient, cfgLetterTitle, cfgLetterMessage, cfgSender,
+        cfgBirthday, cfgLockTitle, cfgLockInstruction, cfgLockHint,
+        cfgDedication, cfgGardenCardTitle
+      ].forEach(el => {
+        el.addEventListener('input', updateLivePreview);
+      });
+
+      // Save Config Button
+      btnSaveConfig.addEventListener('click', () => {
+        const data = getFormData();
+        window.GiftConfig.save(data);
+        updateShareUrl();
+        showToast('Đã lưu cấu hình thành công!');
+      });
+
+      // Reset to Default Button
+      btnResetDefault.addEventListener('click', () => {
+        if (confirm('Bạn có chắc chắn muốn khôi phục toàn bộ nội dung về mặc định ban đầu không?')) {
+          window.GiftConfig.reset();
+          loadConfigIntoForm();
+          showToast('Đã khôi phục cài đặt mặc định!');
+        }
+      });
+
+      // Copy Shareable Link Button
+      btnCopyShareUrl.addEventListener('click', async () => {
+        const data = getFormData();
+        window.GiftConfig.save(data);
+        updateShareUrl();
+        const url = shareUrlInput.value;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(url);
+          } else {
+            shareUrlInput.select();
+            document.execCommand('copy');
+          }
+          showToast('Đã sao chép Link gửi người ấy vào bộ nhớ tạm!');
+        } catch (err) {
+          shareUrlInput.select();
+          showToast('Vui lòng bôi đen và nhấn Ctrl+C để sao chép link.', true);
+        }
+      });
+
+      // Update Admin Auth
+      btnUpdateAdminAuth.addEventListener('click', () => {
+        const newUser = adminNewUser.value.trim();
+        const newPass = adminNewPass.value;
+        if (!newUser) {
+          showToast('Tên đăng nhập không được để trống!', true);
+          return;
+        }
+        if (!newPass) {
+          showToast('Vui lòng nhập mật khẩu quản trị mới!', true);
+          return;
+        }
+        window.GiftConfig.saveAdminAuth({ username: newUser, password: newPass });
+        adminNewPass.value = '';
+        showToast('Đã cập nhật tài khoản quản trị thành công!');
+      });
+
+      // Birthday Input Auto Formatting: dd/mm/yyyy
+      cfgBirthday.addEventListener('input', () => {
+        const digits = cfgBirthday.value.replace(/\D/g, '').slice(0, 8);
+        if (digits.length <= 2) {
+          cfgBirthday.value = digits;
+        } else if (digits.length <= 4) {
+          cfgBirthday.value = digits.slice(0, 2) + '/' + digits.slice(2);
+        } else {
+          cfgBirthday.value = digits.slice(0, 2) + '/' + digits.slice(2, 4) + '/' + digits.slice(4);
+        }
+        updateLivePreview();
+      });
+
+      // Initialize
+      checkAuth();
+    })();
+  </script>
+</body>
+</html>

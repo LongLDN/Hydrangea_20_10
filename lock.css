@@ -1,0 +1,171 @@
+/* =========================================================================
+   GIFT LOCK SCREEN STYLES
+   ========================================================================= */
+.gift-lock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(240, 246, 252, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 1;
+  transition: opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gift-lock-overlay.unlocked {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.gift-lock-card {
+  position: relative;
+  width: min(440px, 100%);
+  padding: 38px 32px 34px;
+  background: #ffffff;
+  border: 1px solid #dce8f0;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(50, 80, 105, 0.16), 0 4px 16px rgba(50, 80, 105, 0.08);
+  text-align: center;
+  font-family: "Noto Sans", sans-serif;
+  color: #3a5568;
+}
+
+.gift-lock-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #ebf3f7;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.lock-icon {
+  margin: 0 auto 16px;
+  font-size: 32px;
+  line-height: 1;
+  color: #e63960;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lock-heart {
+  display: inline-block;
+  animation: lockHeartBeat 2s ease-in-out infinite;
+}
+
+.lock-flower {
+  display: inline-block;
+  color: #72a4be;
+  font-size: 26px;
+}
+
+@keyframes lockHeartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+.lock-title {
+  margin: 0 0 10px;
+  font-family: "Playfair Display", "Noto Serif", serif;
+  font-size: clamp(22px, 4vw, 26px);
+  font-weight: 600;
+  color: #2c4456;
+  line-height: 1.35;
+}
+
+.lock-message {
+  margin: 0 0 22px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #637f94;
+}
+
+.lock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lock-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.lock-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #c9dce8;
+  border-radius: 16px;
+  background: #f7fafc;
+  color: #223746;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-align: center;
+  transition: border-color 0.25s, box-shadow 0.25s, background-color 0.25s;
+  outline: none;
+}
+
+.lock-input:focus {
+  border-color: #6a9fb5;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(106, 159, 181, 0.18);
+}
+
+.lock-hint {
+  margin: 4px 0 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #7d96a8;
+}
+
+.lock-error {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #d63353;
+  line-height: 1.5;
+}
+
+.lock-input.shake {
+  animation: lockShake 0.45s ease-in-out;
+}
+
+.lock-submit-btn {
+  margin-top: 6px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #5b95ae 0%, #467e98 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(70, 126, 152, 0.28);
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.lock-submit-btn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px rgba(70, 126, 152, 0.36);
+  filter: brightness(1.05);
+}
+
+.lock-submit-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes lockShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
